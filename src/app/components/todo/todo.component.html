@@ -2,26 +2,34 @@
   <h1>Todo List</h1>
 
   <div class="todo-input">
-    <input
-      matInput
-      type="text"
-      [(ngModel)]="newTodo"
-      placeholder="Add a new task"
-    />
-    <button (click)="addTodo()">Add</button>
+    <mat-form-field class="example-form-field">
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="newTodo"
+        placeholder="Add a new task"
+      />
+    </mat-form-field>
+
+    <button mat-button (click)="addTodo()">Add</button>
   </div>
 
-  <ul class="todo-list">
-    <li *ngFor="let todo of todos" [class.completed]="todo.completed">
+  <mat-list role="list">
+    <mat-list-item
+      *ngFor="let todo of todos"
+      [class.completed]="todo.completed"
+    >
       <mat-checkbox
         type="checkbox"
         [checked]="todo.completed"
         (change)="updateTodo(todo)"
       >
-        <span>{{ todo.title }}</span> </mat-checkbox
-      >/>
+        <span>{{ todo.title }}</span>
+      </mat-checkbox>
 
-      <button (click)="deleteTodo(todo.id)">Delete</button>
-    </li>
-  </ul>
+      <button mat-mini-fab (click)="deleteTodo(todo.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
 </div>
